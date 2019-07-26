@@ -35,6 +35,16 @@ with app.app_context():
         user=sheema
     )
 
+    commute = Entry(
+        title='Stressful Commute',
+        what='Missed train and was late to GA',
+        where='Uxbridge Station',
+        feeling='Stressed',
+        image='image-url',
+        significance=4,
+        user=sheema
+    )
+
     backend = Component(step='finish backend')
     frontend = Component(step='finish frontend')
 
@@ -56,6 +66,7 @@ with app.app_context():
 
     db.session.add(sheema)
     db.session.add(breakfast)
+    db.session.add(commute)
     db.session.add(project)
     db.session.add(backend)
     db.session.add(frontend)
