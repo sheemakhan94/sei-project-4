@@ -30,7 +30,7 @@ from .base import BaseModel, BaseSchema
 
 class User(db.Model, BaseModel):
 
-    __tablename__ = 'user_journals'
+    __tablename__ = 'users'
 
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(128), nullable=False, unique=True)
@@ -80,9 +80,9 @@ class UserSchema(ma.ModelSchema, BaseSchema):
     password_confirmation = fields.String(required=True)
 
     # Next 1 line
-    user_entries = fields.Nested('EntrySchema', exclude=('updated_at'))
-    user_tasks = fields.Nested('TaskSchema', only=('id', 'to_do', 'components', 'due_date'))
-    user_events = fields.Nested('EventSchema', only=('id', 'event_name', 'event_date', 'event_location'))
+    user_entries = fields.Nested('EntrySchema', many=True, exclude=('updated_at'))
+    user_tasks = fields.Nested('TaskSchema', many=True, only=('id', 'title', 'components', 'due'))
+    user_events = fields.Nested('EventSchema', many=True, only=('id', 'event_name', 'event_date', 'event_location'))
 
     class Meta:
         model = User

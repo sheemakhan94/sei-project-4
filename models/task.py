@@ -16,12 +16,12 @@ class Task(db.Model, BaseModel):
 
     __tablename__ = 'tasks'
 
-    to_do = db.Column(db.String(40), nullable=False)
+    title = db.Column(db.String(40), nullable=False)
     components = db.relationship('Component', secondary=task_components, backref='tasks')
-    due_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    due = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
     # Next two lines
-    user_id = db.Column(db.Integer, db.ForeignKey('user_journals.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User', backref="user_tasks")
 
 class TaskSchema(ma.ModelSchema, BaseSchema):

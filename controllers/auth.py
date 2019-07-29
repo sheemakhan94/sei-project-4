@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, g
 from models.user import User, UserSchema
+from lib.secure_route import secure_route
 
 api = Blueprint('auth', __name__)
 user_schema = UserSchema()
@@ -28,5 +29,8 @@ def login():
 
 
 @api.route('/profile', methods=['GET'])
+@secure_route
 def profile():
-    return user_schema, jsonify(g.current_user), 200
+    print(g.current_user)
+    user = User.query.get(g.current_user.id)
+    return user_schema.jsonify(user), 200
