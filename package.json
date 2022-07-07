@@ -33,7 +33,7 @@
     "@mobiscroll/cli": "^1.0.0",
     "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-4.7.3.tgz",
     "axios": "^0.19.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.7.0",
     "react-calendar": "^2.19.0",
     "react-dom": "^16.7.0",
